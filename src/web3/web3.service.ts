@@ -25,7 +25,7 @@ export class Web3Service {
 
     async getGroupById(id){
         const arrayofIds: number[] = await this.getGroupIds()
-        if (/*arrayofIds.includes(id)*/1){
+        if (arrayofIds.includes(id)){
             await this.contract.methods.​getGroup(id).call().than(console.log)
             return await this.contract.methods.​getGroup(id).call()
         }
