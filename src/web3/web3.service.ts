@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import e from 'express';
 // import Web3 from 'web3'; // Cant resolve ERROR TypeError: web3_1.default is not a constructor 
 import fs from 'fs';
 const Web3 = require('web3')
@@ -26,13 +27,13 @@ export class Web3Service {
     async getGroupById(id){
         const arrayofIds: number[] = await this.getGroupIds()
         if (arrayofIds.includes(id)){
-            await this.contract.methods.​getGroup(id).call().than(console.log)
             return await this.contract.methods.​getGroup(id).call()
+        } else {
+            throw new NotFoundException('Todo with id=' + id + ' not exist');
         }
-        return `Grout with ID - ${id}  not found`
     }
+    
     async getIndexById(id){
-        await this.contract.methods.getIndex(id).call().then(console.log)
         return await this.contract.methods.getIndex(id).call()
     }
     

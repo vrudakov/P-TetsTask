@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Web3Service } from './web3/web3.service';
 
@@ -19,5 +19,10 @@ export class AppController {
   @Get('last-block')
   getLastBlock() {
     return this.web3Service.getLastBlock()
+  }
+
+  @Post()
+  writeLasBlock() {
+    let lastblock
   }
 }
