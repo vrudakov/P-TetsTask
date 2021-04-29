@@ -14,10 +14,8 @@ export class Web3Service {
 
 
     constructor() {
-        
         this.web3 = new Web3('https://ropsten.infura.io/v3/3781457252c74e0fab462d669ed3f9d8')
         this.contract = new this.web3.eth.Contract(JSON.parse(this.abi), this.contractAddres)
-        
     }
     
     async getGroupIds(){

@@ -1,16 +1,16 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
 import { Group } from "./group.entity";
 
 @Entity()
-export class RawIndex {
+export class Index {
     @PrimaryGeneratedColumn()
     id: number;
   
     @Column()
-    name: string;
+    name: number;
   
     @Column()
-    ethPriceInWei: string;
+    ethPriceInWei: number;
   
     @Column()
     usdPriceInCents: number;
@@ -20,10 +20,10 @@ export class RawIndex {
   
     @Column()
     percentageChange: number;
-
+    
     @Column()
     groupId: number;
 
-    @ManyToOne(() => Group, (group: Group) => group.name)
+    @ManyToOne(type => Group, group => group.indexes)
     public group: Group; 
 } 

@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Index } from './model/index.entity';
+import { Index } from '../enities/index.entity';
+
+
 
 @Injectable()
 export class IndexService {
@@ -14,8 +16,8 @@ export class IndexService {
     return this.indexRepository.find();
   }
 
-  findOne(id: string): Promise<Index> {
-    return this.indexRepository.findOne(id);
+  async findOne(name: string): Promise<Index> {
+    return await this.indexRepository.findOne({where: {name: name}});
   }
 
   update(index: Index): Promise<Index> {

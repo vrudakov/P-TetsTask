@@ -1,5 +1,5 @@
-import { RawIndex } from "src/enities/index.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Index } from "src/enities/index.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, JoinColumn} from "typeorm";
 
 @Entity()
 export class Group {
@@ -7,8 +7,12 @@ export class Group {
     id: number;
     
     @Column()
+    groupId: number;
+
+    @Column()
     name: string;
 
-    @OneToMany(type => Group, group => group.name)
-    indexes: RawIndex[];
+    @OneToMany(type => Index, index => index.group)
+    indexes: Index[];
+    
 } 

@@ -5,6 +5,4 @@ import { Web3Service } from './web3.service';
     providers: [Web3Service],
     exports: [Web3Service]
 })
-
-export class Web3Module {
-}
+export class Web3Module {}

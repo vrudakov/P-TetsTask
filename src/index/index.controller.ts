@@ -7,10 +7,9 @@ export class IndexController {
 
     constructor(private readonly web3Service: Web3Service, private readonly indexService: IndexService){}
 
-    // @Get(':id')
-    // async getIndexById(@Param('id')id: string ){
-    //     console.log(await this.web3Service.getIndexById(id))
-    //     this.indexService.update(await this.web3Service.getIndexById(id))
-    //     return this.indexService.findOne(id)
-    // }
+    @Get(':id')
+    async getIndexById(@Param('id')id: string ){
+        // console.log(await this.web3Service.getIndexById(id))
+        return await this.indexService.findOne(id)
+    }
 }
