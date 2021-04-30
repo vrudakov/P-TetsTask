@@ -25,7 +25,7 @@ export class GroupService {
 
     if (group !== undefined) {
       let idx: number[] = []
-      let all = await this.groupRepository.find({relations: ["indexes"]})
+      let all = await this.groupRepository.find({relations: ["indexes"], where: {groupId: id}})
       let allIndex = all[0].indexes
       allIndex.forEach(element => {
         idx.push(element.name)
