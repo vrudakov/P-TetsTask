@@ -8,7 +8,7 @@ import { Index } from '../enities/index.entity';
 import { IndexService } from '../index/index.service';
 
 
- @Controller('group')
+@Controller('group')
 export class GroupController {
 
     constructor(private readonly web3Service: Web3Service,private readonly groupService: GroupService, private readonly indexService: IndexService){}
@@ -23,14 +23,14 @@ export class GroupController {
         const groupDto: GroupDto = await this.web3Service.getGroupById(groupId)
         let group = new Group
         let ret = await this.groupService.findOne(groupId)
-        console.log(JSON.stringify(ret) )
+        
       
         if (await this.groupService.findOne(groupId) === undefined){        
             
             group.id = +groupId
             group.groupId = +groupId
             group.name = groupDto.name
-
+            await this.groupService.update(group)
             groupDto.indexes.forEach(async index => {
                 const indexDto: IndexDto = await this.web3Service.getIndexById(index)
                 let idx = new Index
@@ -43,9 +43,8 @@ export class GroupController {
                 idx.id = +index + 1
                 this.indexService.update(idx)
             });
-            await this.groupService.update(group)
-        }
-        
+            
+        }        
         return ret
     }
 

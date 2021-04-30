@@ -3,7 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Group } from '../enities/group.entity';
 import { Index } from '../enities/index.entity';
-import { GroupDto } from '../dto/group.dto';
+import { GroupDto, responseGroupDto } from '../dto/group.dto';
+
 
 
 @Injectable()
@@ -19,11 +20,18 @@ export class GroupService {
   }
     
    async findOne(id: string)  {
-    var group: Group = await this.groupRepository.findOne(id)
+    
+    var group = await this.groupRepository.findOne(id)
 
-    if (this.groupRepository.findOne(id) !== undefined) {
-      const res = await this.groupRepository.find({relations: ["indexes"]})
-      // написаь функционал чтоб с группой вернуть и все индексы.
+    if (group !== undefined) {
+      let idx: number[] = []
+      let all = await this.groupRepository.find({relations: ["indexes"]})
+      let allIndex = all[0].indexes
+      allIndex.forEach(element => {
+        idx.push(element.name)
+      });
+      var res: responseGroupDto = {id: +id, name: group.name, indexes: idx};
+      return res
     }
     return group
   }

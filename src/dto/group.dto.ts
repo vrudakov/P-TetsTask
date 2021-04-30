@@ -5,3 +5,9 @@ export class GroupDto {
     name: string;
     indexes: number[];
 }
+
+export class responseGroupDto {
+    id: number;
+    name: string;
+    indexes: number[];
+}
