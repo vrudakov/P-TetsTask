@@ -1,4 +1,4 @@
-export class UpdateDto {
+export class LastBlockDto {
     difficulty: string;
     extraData: string;
     gasLimit: number;

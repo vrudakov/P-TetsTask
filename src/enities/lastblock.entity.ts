@@ -1,8 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class LastBlock {
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     id: number;
     
     @Column()
@@ -20,7 +20,7 @@ export class LastBlock {
     @Column()
     hash: string;
 
-    @Column()
+    @Column("varchar", { length: 1000 })
     logsBloom: string;
 
     @Column()
@@ -57,11 +57,7 @@ export class LastBlock {
     totalDifficulty: string;
 
     @Column()
-    transactions: string;
-
-    @Column()
     transactionsRoot: string;
 
-    @Column()
-    uncles: string;
+    transactions: string []
 } 

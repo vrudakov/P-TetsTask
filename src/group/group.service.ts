@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Group } from '../enities/group.entity';
-import { Index } from '../enities/index.entity';
-import { GroupDto, responseGroupDto } from '../dto/group.dto';
+import { ResponseGroupDto } from '../dto/group.dto';
 
 
 
@@ -12,15 +11,13 @@ export class GroupService {
   constructor(
     @InjectRepository(Group)
     private groupRepository: Repository<Group>,
-    // private indexRepository: Repository<Index>
   ) {}
 
   findAll(): Promise<Group[]> {
     return this.groupRepository.find({relations: ["indexes"]})
   }
     
-   async findOne(id: string)  {
-    
+  async findOne(id: string)  {
     var group = await this.groupRepository.findOne(id)
 
     if (group !== undefined) {
@@ -30,14 +27,15 @@ export class GroupService {
       allIndex.forEach(element => {
         idx.push(element.name)
       });
-      var res: responseGroupDto = {id: +id, name: group.name, indexes: idx};
+      var res: ResponseGroupDto = {id: +id, name: group.name, indexes: idx};
       return res
     }
     return group
   }
 
-  update(group: Group): Promise<Group> {
-    return this.groupRepository.save(group) //  TODO change to create/update
+  async update(group: Group): Promise<Group> {
+    console.log(group.groupId + " Group SAVED")
+    return await this.groupRepository.save(group) //  TODO change to create/update
   }
 
   async remove(id: string): Promise<void> {

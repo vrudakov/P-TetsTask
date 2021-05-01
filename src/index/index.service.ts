@@ -20,12 +20,12 @@ export class IndexService {
     return await this.indexRepository.findOne({where: {name: name}});
   }
 
-  update(index: Index): Promise<Index> {
-    return this.indexRepository.save(index)
+  async update(index: Index): Promise<Index> {
+    console.log(index.groupId + " Index SAVED")
+    return await this.indexRepository.save(index)
   }
 
   async remove(id: string): Promise<void> {
     await this.indexRepository.delete(id);
   }
 }
-

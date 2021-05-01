@@ -18,38 +18,40 @@ export class GroupController {
         return this.groupService.findAll()
     }
 
-    @Get(':groupId')
-    async getGroup(@Param('groupId') groupId: string) {
+
+    async fillDbFromWeb3(groupId: string){
         const groupDto: GroupDto = await this.web3Service.getGroupById(groupId)
         let group = new Group
-        let ret = await this.groupService.findOne(groupId)
-        
-      
-        if (await this.groupService.findOne(groupId) === undefined){        
-            
-            group.id = +groupId
-            group.groupId = +groupId
-            group.name = groupDto.name
-            await this.groupService.update(group)
-            groupDto.indexes.forEach(async index => {
-                const indexDto: IndexDto = await this.web3Service.getIndexById(index)
-                let idx = new Index
-                idx.ethPriceInWei = indexDto.ethPriceInWei
-                idx.usdPriceInCents = indexDto.usdCapitalization
-                idx.usdCapitalization = indexDto.usdCapitalization
-                idx.percentageChange = indexDto.percentageChange
-                idx.groupId = +groupId
-                idx.name = +index
-                idx.id = +index + 1
-                this.indexService.update(idx)
-            });
-            
-        }        
-        return ret
+
+        group.id = +groupId
+        group.groupId = +groupId
+        group.name = groupDto.name
+        await this.groupService.update(group) 
+        for(var i = 0; i < groupDto.indexes.length; i++) {
+            const indexDto: IndexDto = await this.web3Service.getIndexById(i)
+            let idx = new Index
+
+            idx.ethPriceInWei = indexDto.ethPriceInWei
+            idx.usdPriceInCents = indexDto.usdCapitalization
+            idx.usdCapitalization = indexDto.usdCapitalization
+            idx.percentageChange = indexDto.percentageChange
+            idx.groupId = +groupId
+            idx.name = +i
+            idx.id = +i + 1
+            console.log(i)
+            await this.indexService.update(idx)
+        }       
+    }
+
+    @Get(':groupId')
+    async getGroup(@Param('groupId') groupId: string) {      
+        if (await this.groupService.findOne(groupId) === undefined){    
+            await this.fillDbFromWeb3(groupId)
+        }
+        return await this.groupService.findOne(groupId)
     }
 
     
-
 
     @Delete(':groupId') 
     async deleteGroup(@Param('groupId') groupId: string): Promise<void> {

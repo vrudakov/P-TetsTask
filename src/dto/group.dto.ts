@@ -6,7 +6,7 @@ export class GroupDto {
     indexes: number[];
 }
 
-export class responseGroupDto {
+export class ResponseGroupDto {
     id: number;
     name: string;
     indexes: number[];
