@@ -1,3 +1,5 @@
+import { Tx } from "src/enities/transaction.entity";
+
 export class LastBlockDto {
     difficulty: string;
     extraData: string;
@@ -18,5 +20,4 @@ export class LastBlockDto {
     totalDifficulty: string;
     transactions: string[];
     transactionsRoot: string;
-    uncles: any[];
 }

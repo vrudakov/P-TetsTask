@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Tx } from "./transaction.entity";
 
 @Entity()
 export class LastBlock {
@@ -59,5 +60,5 @@ export class LastBlock {
     @Column()
     transactionsRoot: string;
 
-    transactions: string []
+    transactions: Tx []
 } 

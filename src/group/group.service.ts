@@ -34,7 +34,6 @@ export class GroupService {
   }
 
   async update(group: Group): Promise<Group> {
-    console.log(group.groupId + " Group SAVED")
     return await this.groupRepository.save(group) //  TODO change to create/update
   }
 

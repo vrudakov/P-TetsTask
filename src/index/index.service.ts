@@ -21,7 +21,6 @@ export class IndexService {
   }
 
   async update(index: Index): Promise<Index> {
-    console.log(index.groupId + " Index SAVED")
     return await this.indexRepository.save(index)
   }
 
