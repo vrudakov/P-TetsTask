@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -9,7 +9,14 @@ import { LastBlock } from './enities/lastblock.entity';
 import { Tx } from './enities/transaction.entity';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(),TypeOrmModule.forFeature([LastBlock, Tx]), GroupModule, IndexModule, Web3Module],
+  imports: [
+    CacheModule.register(),
+    TypeOrmModule.forRoot(),
+    TypeOrmModule.forFeature([LastBlock, Tx]),
+    GroupModule,
+    IndexModule,
+    Web3Module
+  ],
   controllers: [AppController],
   providers: [AppService]
 })

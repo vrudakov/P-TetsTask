@@ -63,10 +63,10 @@ export class AppService {
       await this.removeLastBlock(1)
       await this.removeAllTx(lastBlock.number)
       for(let i = 0; i < lastBlock.transactions.length; i++) {
-        console.log(txArray[i])
         currentBlockTx.push({ blockNumber: lastBlock.number, txnHash: String(txArray[i])})
         await this.updateTx({ blockNumber: lastBlock.number, txnHash: String(txArray[i])})
       }
+      
       let _lastBlock: LastBlock = {
         id: 1,
         difficulty: lastBlock.difficulty,

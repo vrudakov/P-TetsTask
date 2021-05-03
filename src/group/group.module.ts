@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Group } from '../enities/group.entity';
 import { GroupController } from './group.controller';
@@ -8,7 +8,11 @@ import { Index } from '../enities/index.entity';
 import { IndexModule } from '../index/index.module';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Group, Index]), Web3Module, IndexModule],
+    imports: [CacheModule.register(),
+        TypeOrmModule.forFeature([Group, Index]),
+        Web3Module,
+        IndexModule
+    ],
     controllers: [GroupController],
     providers: [GroupService],
     exports: [TypeOrmModule, GroupService]
