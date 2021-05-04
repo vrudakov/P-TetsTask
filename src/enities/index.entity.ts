@@ -1,29 +1,37 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
-import { Group } from "./group.entity";
+import { ApiProperty } from '@nestjs/swagger';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Group } from './group.entity';
 
 @Entity()
 export class Index {
-    @PrimaryGeneratedColumn()
-    id: number;
-  
-    @Column()
-    name: number;
-  
-    @Column()
-    ethPriceInWei: number;
-  
-    @Column()
-    usdPriceInCents: number;
-  
-    @Column()
-    usdCapitalization: number;
-  
-    @Column()
-    percentageChange: number;
-    
-    @Column()
-    groupId: number;
+  @ApiProperty()
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @ManyToOne(type => Group, group => group.indexes)
-    public group: Group; 
-} 
+  @ApiProperty()
+  @Column()
+  name: number;
+
+  @ApiProperty()
+  @Column()
+  ethPriceInWei: number;
+
+  @ApiProperty()
+  @Column()
+  usdPriceInCents: number;
+
+  @ApiProperty()
+  @Column()
+  usdCapitalization: number;
+
+  @ApiProperty()
+  @Column()
+  percentageChange: number;
+
+  @ApiProperty()
+  @Column()
+  groupId: number;
+
+  @ManyToOne(() => Group, (group) => group.indexes)
+  public group: Group;
+}

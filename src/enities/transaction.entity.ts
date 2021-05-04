@@ -1,14 +1,13 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Tx {
-    @PrimaryGeneratedColumn("increment")
-    id?: number;
-    
-    @Column()
-    blockNumber: number;
+  @PrimaryGeneratedColumn('increment')
+  id?: number;
 
-    @Column()
-    txnHash: string;
+  @Column()
+  blockNumber: number;
 
-} 
+  @Column()
+  txnHash: string;
+}

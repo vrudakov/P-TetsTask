@@ -1,64 +1,64 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
-import { Tx } from "./transaction.entity";
+import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Tx } from './transaction.entity';
 
 @Entity()
 export class LastBlock {
-    @PrimaryColumn()
-    id: number;
-    
-    @Column()
-    difficulty: string;
+  @PrimaryColumn()
+  id: number;
 
-    @Column()
-    extraData: string;
+  @Column()
+  difficulty: string;
 
-    @Column()
-    gasLimit: number;
+  @Column()
+  extraData: string;
 
-    @Column()
-    gasUsed: number;
+  @Column()
+  gasLimit: number;
 
-    @Column()
-    hash: string;
+  @Column()
+  gasUsed: number;
 
-    @Column("varchar", { length: 1000 })
-    logsBloom: string;
+  @Column()
+  hash: string;
 
-    @Column()
-    miner: string;
+  @Column('varchar', { length: 1000 })
+  logsBloom: string;
 
-    @Column()
-    mixHash: string;
+  @Column()
+  miner: string;
 
-    @Column()
-    nonce: string;
+  @Column()
+  mixHash: string;
 
-    @Column()
-    number: number;
+  @Column()
+  nonce: string;
 
-    @Column()
-    parentHash: string;
+  @Column()
+  number: number;
 
-    @Column()
-    receiptsRoot: string;
+  @Column()
+  parentHash: string;
 
-    @Column()
-    sha3Uncles: string;
+  @Column()
+  receiptsRoot: string;
 
-    @Column()
-    size: number;
+  @Column()
+  sha3Uncles: string;
 
-    @Column()
-    stateRoot: string;
+  @Column()
+  size: number;
 
-    @Column()
-    timestamp: number;
+  @Column()
+  stateRoot: string;
 
-    @Column()
-    totalDifficulty: string;
+  @Column()
+  timestamp: number;
 
-    @Column()
-    transactionsRoot: string;
+  @Column()
+  totalDifficulty: string;
 
-    transactions: Tx []
-} 
+  @Column()
+  transactionsRoot: string;
+
+  transactions: Tx[];
+}

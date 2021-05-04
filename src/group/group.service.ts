@@ -4,8 +4,6 @@ import { Repository } from 'typeorm';
 import { Group } from '../enities/group.entity';
 import { ResponseGroupDto } from '../dto/group.dto';
 
-
-
 @Injectable()
 export class GroupService {
   constructor(
@@ -14,31 +12,33 @@ export class GroupService {
   ) {}
 
   findAll(): Promise<Group[]> {
-    return this.groupRepository.find({relations: ["indexes"]})
+    return this.groupRepository.find({ relations: ['indexes'] });
   }
-    
-  async findOne(id: string)  {
-    var group = await this.groupRepository.findOne(id)
+
+  async findOne(id: string) {
+    const group = await this.groupRepository.findOne(id);
 
     if (group !== undefined) {
-      let idx: number[] = []
-      let all = await this.groupRepository.find({relations: ["indexes"], where: {groupId: id}})
-      let allIndex = all[0].indexes
-      allIndex.forEach(element => {
-        idx.push(element.name)
+      const idx: number[] = [];
+      const all = await this.groupRepository.find({
+        relations: ['indexes'],
+        where: { groupId: id },
       });
-      var res: ResponseGroupDto = {id: +id, name: group.name, indexes: idx};
-      return res
+      const allIndex = all[0].indexes;
+      allIndex.forEach((element) => {
+        idx.push(element.name);
+      });
+      const res: ResponseGroupDto = { id: +id, name: group.name, indexes: idx };
+      return res;
     }
-    return group
+    return group;
   }
 
   async update(group: Group): Promise<Group> {
-    return await this.groupRepository.save(group) //  TODO change to create/update
+    return await this.groupRepository.save(group); //  TODO change to create/update
   }
 
   async remove(id: string): Promise<void> {
     await this.groupRepository.delete(id);
   }
 }
-

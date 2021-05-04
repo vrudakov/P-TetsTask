@@ -3,8 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Index } from '../enities/index.entity';
 
-
-
 @Injectable()
 export class IndexService {
   constructor(
@@ -17,11 +15,11 @@ export class IndexService {
   }
 
   async findOne(name: string): Promise<Index> {
-    return await this.indexRepository.findOne({where: {name: name}});
+    return await this.indexRepository.findOne({ where: { name: name } });
   }
 
   async update(index: Index): Promise<Index> {
-    return await this.indexRepository.save(index)
+    return await this.indexRepository.save(index);
   }
 
   async remove(id: string): Promise<void> {

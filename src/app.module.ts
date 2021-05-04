@@ -15,9 +15,9 @@ import { Tx } from './enities/transaction.entity';
     TypeOrmModule.forFeature([LastBlock, Tx]),
     GroupModule,
     IndexModule,
-    Web3Module
+    Web3Module,
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService],
 })
-export class AppModule {} 
+export class AppModule {}

@@ -1,18 +1,22 @@
-import { Index } from "src/enities/index.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn, JoinColumn} from "typeorm";
+import { ApiProperty } from '@nestjs/swagger';
+import { Index } from 'src/enities/index.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Group {
-    @PrimaryGeneratedColumn()
-    id: number;
-    
-    @Column()
-    groupId: number;
+  @ApiProperty()
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @ApiProperty()
+  @Column()
+  groupId: number;
 
-    @OneToMany(type => Index, index => index.group)
-    indexes: Index[];
-    
-} 
+  @ApiProperty()
+  @Column()
+  name: string;
+
+  @ApiProperty()
+  @OneToMany(() => Index, (index) => index.group)
+  indexes: Index[];
+}

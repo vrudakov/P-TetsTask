@@ -8,13 +8,14 @@ import { Index } from '../enities/index.entity';
 import { IndexModule } from '../index/index.module';
 
 @Module({
-    imports: [CacheModule.register(),
-        TypeOrmModule.forFeature([Group, Index]),
-        Web3Module,
-        IndexModule
-    ],
-    controllers: [GroupController],
-    providers: [GroupService],
-    exports: [TypeOrmModule, GroupService]
+  imports: [
+    CacheModule.register(),
+    TypeOrmModule.forFeature([Group, Index]),
+    Web3Module,
+    IndexModule,
+  ],
+  controllers: [GroupController],
+  providers: [GroupService],
+  exports: [TypeOrmModule, GroupService],
 })
 export class GroupModule {}
