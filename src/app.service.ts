@@ -111,7 +111,7 @@ export class AppService {
   }
 
   async updateTx(tx: Tx): Promise<Tx> {
-    return await this.txRepository.save(tx);
+    return this.txRepository.save(tx);
   }
 
   async removeLastBlock(id: number): Promise<void> {

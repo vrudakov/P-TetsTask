@@ -35,10 +35,10 @@ export class GroupService {
   }
 
   async update(group: Group): Promise<Group> {
-    return await this.groupRepository.save(group); //  TODO change to create/update
+    return this.groupRepository.save(group); //  TODO change to create/update
   }
 
   async remove(id: string): Promise<void> {
-    await this.groupRepository.delete(id);
+   await this.groupRepository.delete(id);
   }
 }

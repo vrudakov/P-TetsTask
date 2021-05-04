@@ -10,7 +10,9 @@
     "migrationsRun": true,
     "logging": true,
     "entities": ["dist/**/*.entity{.ts,.js}"],
-    "migrations": ["dist/src/**/db/migrations/*{.ts,.js}"],
+    "migrations": ["dist/**/db/migrations/*{.ts,.js}"],
+    "migrationsTableName": "migrations_typeorm",
+    "migrationsRun": true,
     "cli": {
       "migrationsDir": "db/migrations"
     }

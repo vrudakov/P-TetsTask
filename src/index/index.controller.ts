@@ -5,6 +5,7 @@ import {
   ClassSerializerInterceptor,
   UseInterceptors,
   CacheInterceptor,
+  NotFoundException,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Index } from 'src/enities/index.entity';
@@ -32,6 +33,11 @@ export class IndexController {
   @UseInterceptors(CacheInterceptor)
   @Get(':id')
   async getIndexById(@Param('id') id: string) {
-    return await this.indexService.findOne(id);
+      let index: Index = await this.indexService.findOne(id);
+    if (index !== undefined){
+        return index
+    } else {
+        throw new NotFoundException('Index with id= ' + id + ' not exist. Try to update DB querying group/:id');
+    }
   }
 }

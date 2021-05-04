@@ -71,7 +71,7 @@ export class GroupController {
     if ((await this.groupService.findOne(groupId)) === undefined) {
       await this.fillDbFromWeb3(groupId);
     }
-    return await this.groupService.findOne(groupId);
+    return this.groupService.findOne(groupId);
   }
 
   @ApiResponse({

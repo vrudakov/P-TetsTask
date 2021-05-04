@@ -21,20 +21,20 @@ export class Web3Service {
   }
 
   async getGroupIds() {
-    return await this.contract.methods.getGroupIds().call();
+    return this.contract.methods.getGroupIds().call();
   }
 
   async getGroupById(id) {
     const arrayofIds: number[] = await this.getGroupIds();
     if (arrayofIds.includes(id)) {
-      return await this.contract.methods.getGroup(id).call();
+      return this.contract.methods.getGroup(id).call();
     } else {
-      throw new NotFoundException('Todo with id=' + id + ' not exist');
+      throw new NotFoundException('Group with id=' + id + ' not exist');
     }
   }
 
   async getIndexById(id) {
-    return await this.contract.methods.getIndex(id).call();
+    return this.contract.methods.getIndex(id).call();
   }
 
   async getLastBlock() {

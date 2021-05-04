@@ -13,7 +13,7 @@ export class Index {
   name: number;
 
   @ApiProperty()
-  @Column()
+  @Column({ type: 'bigint' })
   ethPriceInWei: number;
 
   @ApiProperty()

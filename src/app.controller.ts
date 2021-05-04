@@ -41,7 +41,7 @@ export class AppController {
   @Get('last-block')
   async getLastBlock() {
     await this.saveLastBlock();
-    return await this.appService.findLastblock();
+    return this.appService.findLastblock();
   }
 
   async saveLastBlock(): Promise<void> {
